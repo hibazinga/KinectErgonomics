@@ -10,6 +10,14 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
     using System.Windows;
     using System.Windows.Media;
     using Microsoft.Kinect;
+    using System.Diagnostics;
+    using System;
+    using IronPython.Hosting;
+    using Microsoft.Scripting.Hosting;
+    using Microsoft.Scripting;
+
+
+
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -70,6 +78,8 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
         /// Active Kinect sensor
         /// </summary>
         private KinectSensor sensor;
+        private static double count = 0;
+  
 
         /// <summary>
         /// Drawing group for skeleton rendering output
@@ -154,6 +164,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                 if (potentialSensor.Status == KinectStatus.Connected)
                 {
                     this.sensor = potentialSensor;
+                    //
                     break;
                 }
             }
@@ -245,7 +256,79 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                 this.drawingGroup.ClipGeometry = new RectangleGeometry(new Rect(0.0, 0.0, RenderWidth, RenderHeight));
             }
         }
+        private void ExecutePython(string args)
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "C:\\Python27\\python.exe";
 
+            start.Arguments = "python 1+2";
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    Console.Write(result);
+                }
+            }
+        }
+        private static void doPython()
+        {
+            ScriptEngine engine = Python.CreateEngine();
+            engine.ExecuteFile(@"C:\Users\user\Desktop\a.py");
+        }
+        private void RecordPosition (Skeleton skeleton, double count){
+            if (count % 10 != 0) {
+                count++; return;
+            }
+            string text="";
+            string fn = @"C:\Users\user\Desktop\kinect.txt";
+            //HEAD
+            text = "Head: " + " X: " + skeleton.Joints[JointType.Head].Position.X + " ,Y: " + skeleton.Joints[JointType.Head].Position.Y + " ,Z: " + skeleton.Joints[JointType.Head].Position.Z+"\n";
+            File.AppendAllText(fn,text);
+            //SHOULDER CENTER
+            text = "Shoulder Center: " + " X: " + skeleton.Joints[JointType.ShoulderCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderCenter].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //SHOULDER LEFT
+            text = "Shoulder Left: " + " X: " + skeleton.Joints[JointType.ShoulderLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //SHOULDER RIGHT
+            text = "Shoulder Right: " + " X: " + skeleton.Joints[JointType.ShoulderRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //SPINE
+            text = "Spine: " + " X: " + skeleton.Joints[JointType.Spine].Position.X + " ,Y: " + skeleton.Joints[JointType.Spine].Position.Y + " ,Z: " + skeleton.Joints[JointType.Spine].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //HIP CENTER
+            text = "Hip Center: " + " X: " + skeleton.Joints[JointType.HipCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.HipCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipCenter].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //HIP LEFT
+			text = "Hip Left: " + " X: " + skeleton.Joints[JointType.HipLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HipLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //HIP RIGHT
+			text = "Hip Right: " + " X: " + skeleton.Joints[JointType.HipRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HipRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //ELBOW LEFT
+			text = "Elbow Left: " + " X: " + skeleton.Joints[JointType.ElbowLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //WRIST LEFT
+			text = "Wrist Left: " + " X: " + skeleton.Joints[JointType.WristLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.WristLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //HAND LEFT
+			text = "Hand Left: " + " X: " + skeleton.Joints[JointType.HandLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HandLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //ELBOW RIGHT
+			text = "Elbow Right: " + " X: " + skeleton.Joints[JointType.ElbowRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //WRIST RIGHT
+			text = "Wrist Right: " + " X: " + skeleton.Joints[JointType.WristRight].Position.X + " ,Y: " + skeleton.Joints[JointType.WristRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //HAND RIGHT
+			text = "Hand Right: " + " X: " + skeleton.Joints[JointType.HandRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HandRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            File.AppendAllText(fn, "--------------------------------------\n");
+
+        }
         /// <summary>
         /// Draws a skeleton's bones and joints
         /// </summary>
@@ -254,6 +337,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
         private void DrawBonesAndJoints(Skeleton skeleton, DrawingContext drawingContext)
         {
             // Render Torso
+            //RecordPosition(skeleton,count);
             this.DrawBone(skeleton, drawingContext, JointType.Head, JointType.ShoulderCenter);
             this.DrawBone(skeleton, drawingContext, JointType.ShoulderCenter, JointType.ShoulderLeft);
             this.DrawBone(skeleton, drawingContext, JointType.ShoulderCenter, JointType.ShoulderRight);
@@ -281,7 +365,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             this.DrawBone(skeleton, drawingContext, JointType.HipRight, JointType.KneeRight);
             this.DrawBone(skeleton, drawingContext, JointType.KneeRight, JointType.AnkleRight);
             this.DrawBone(skeleton, drawingContext, JointType.AnkleRight, JointType.FootRight);
- 
+            
             // Render Joints
             foreach (Joint joint in skeleton.Joints)
             {
@@ -347,8 +431,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             if (joint0.TrackingState == JointTrackingState.Tracked && joint1.TrackingState == JointTrackingState.Tracked)
             {
                 drawPen = this.trackedBonePen;
-            }
-
+            }            
             drawingContext.DrawLine(drawPen, this.SkeletonPointToScreen(joint0.Position), this.SkeletonPointToScreen(joint1.Position));
         }
 
@@ -370,6 +453,11 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                     this.sensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            doPython();
         }
     }
 }
