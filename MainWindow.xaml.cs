@@ -256,6 +256,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                 this.drawingGroup.ClipGeometry = new RectangleGeometry(new Rect(0.0, 0.0, RenderWidth, RenderHeight));
             }
         }
+        /*
         private void ExecutePython(string args)
         {
             ProcessStartInfo start = new ProcessStartInfo();
@@ -272,11 +273,11 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                     Console.Write(result);
                 }
             }
-        }
+        }*/
         private static void doPython()
         {
             ScriptEngine engine = Python.CreateEngine();
-            engine.ExecuteFile(@"C:\Users\user\Desktop\a.py");
+            engine.ExecuteFile(@"C:\Users\user\Desktop\cs239\c.py");
         }
         private void RecordPosition (Skeleton skeleton, double count){
             if (count % 10 != 0) {
