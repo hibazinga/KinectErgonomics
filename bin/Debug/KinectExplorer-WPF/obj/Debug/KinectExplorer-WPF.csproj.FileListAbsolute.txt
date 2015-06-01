@@ -1,0 +1,2 @@
+C:\Users\Administrator\Dropbox\cs239\KinectExplorer-WPF\bin\Debug\KinectExplorer-WPF.exe.config
+C:\Users\user\KinectErgonomics\bin\Debug\KinectExplorer-WPF\bin\Debug\KinectExplorer-WPF.exe.config

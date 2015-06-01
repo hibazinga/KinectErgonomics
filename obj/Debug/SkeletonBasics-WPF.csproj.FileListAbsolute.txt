@@ -1,0 +1,13 @@
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF.exe
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF.pdb
+C:\Users\user\KinectErgonomics\bin\Debug\SkeletonBasics-WPF.exe
+C:\Users\user\KinectErgonomics\bin\Debug\SkeletonBasics-WPF.pdb
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF.csprojResolveAssemblyReference.cache
+C:\Users\user\KinectErgonomics\obj\Debug\MainWindow.baml
+C:\Users\user\KinectErgonomics\obj\Debug\MainWindow.g.cs
+C:\Users\user\KinectErgonomics\obj\Debug\App.g.cs
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF_MarkupCompile.cache
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF.g.resources
+C:\Users\user\KinectErgonomics\obj\Debug\Microsoft.Samples.Kinect.SkeletonBasics.Properties.Resources.resources
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF.csproj.GenerateResource.Cache
+C:\Users\user\KinectErgonomics\obj\Debug\SkeletonBasics-WPF_Content.g.cs

@@ -1,0 +1,1376 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"res",
+				"res1"
+			],
+			[
+				"max",
+				"maxres"
+			],
+			[
+				"kneeright2",
+				"kneeright2ankleright"
+			],
+			[
+				"kneeleft2",
+				"kneeleft2ankleleft"
+			],
+			[
+				"kneeleft2ank",
+				"kneeleft2ankleright"
+			],
+			[
+				"an",
+				"angle"
+			],
+			[
+				"knee_",
+				"knee_right"
+			],
+			[
+				"kn",
+				"knee_left"
+			],
+			[
+				"s",
+				"s"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"arm",
+				"arm"
+			],
+			[
+				"kne",
+				"kneeright_angle"
+			],
+			[
+				"knee",
+				"kneeleft_angle"
+			],
+			[
+				"hi",
+				"hip_left"
+			],
+			[
+				"se",
+				"setupClassifier"
+			],
+			[
+				"tri",
+				"trial_list"
+			],
+			[
+				"cla",
+				"classifier1"
+			],
+			[
+				"cl",
+				"classifier1"
+			],
+			[
+				"fe",
+				"features"
+			],
+			[
+				"r",
+				"res"
+			],
+			[
+				"test",
+				"test_data"
+			],
+			[
+				"f",
+				"filename"
+			],
+			[
+				"v2",
+				"v2_square_sum"
+			],
+			[
+				"v1",
+				"v1_square_sum"
+			],
+			[
+				"dist",
+				"distance_value"
+			],
+			[
+				"cov",
+				"cov_matrix"
+			],
+			[
+				"B",
+				"brain"
+			],
+			[
+				"pr",
+				"print_current"
+			],
+			[
+				"car",
+				"card_rank"
+			],
+			[
+				"ca",
+				"card1_suit"
+			],
+			[
+				"own",
+				"own_cards"
+			],
+			[
+				"card",
+				"card1_suit"
+			],
+			[
+				"min",
+				"minsuit"
+			],
+			[
+				"mi",
+				"minsuit"
+			],
+			[
+				"compareCard1",
+				"compareCard1Suit"
+			],
+			[
+				"fit",
+				"fittest_m"
+			],
+			[
+				"fi",
+				"fittest_s"
+			],
+			[
+				"cimg",
+				"cimg"
+			],
+			[
+				"get",
+				"getOwnCard"
+			],
+			[
+				"st",
+				"st"
+			],
+			[
+				"ran",
+				"rangpai"
+			],
+			[
+				"e",
+				"equal_images"
+			],
+			[
+				"im",
+				"imageB"
+			],
+			[
+				"ima",
+				"imageA"
+			],
+			[
+				"img",
+				"img2cv2"
+			],
+			[
+				"re",
+				"region_rangpai"
+			],
+			[
+				"cv2",
+				"cv2_img"
+			],
+			[
+				"reg",
+				"region_state"
+			],
+			[
+				"ope",
+				"open_cv_image"
+			],
+			[
+				"box",
+				"box_card1_suit"
+			],
+			[
+				"te",
+				"test_label"
+			],
+			[
+				"tes",
+				"test_data"
+			],
+			[
+				"ang",
+				"angleShouldercenterSpineHipcenter"
+			],
+			[
+				"spine",
+				"spine2hipcenter"
+			],
+			[
+				"shou",
+				"shouldercenter2spine"
+			],
+			[
+				"sho",
+				"shouldercenter2spine"
+			],
+			[
+				"elb",
+				"elbow_left"
+			],
+			[
+				"sk",
+				"skeleton"
+			],
+			[
+				"as",
+				"astype"
+			],
+			[
+				"cmd",
+				"cmd2"
+			],
+			[
+				"sc",
+				"screencap_raw"
+			],
+			[
+				"pos",
+				"poss"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"num",
+				"num_img"
+			],
+			[
+				"m",
+				"m"
+			],
+			[
+				"com",
+				"compareType"
+			],
+			[
+				"html",
+				"html_data"
+			],
+			[
+				"a",
+				"account"
+			],
+			[
+				"email",
+				"email_addr"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"sel",
+				"sel"
+			],
+			[
+				"mid",
+				"mid"
+			],
+			[
+				"emails",
+				"emails"
+			],
+			[
+				"send",
+				"sender_name"
+			],
+			[
+				"w",
+				"write"
+			],
+			[
+				"web",
+				"webhook"
+			],
+			[
+				"uid",
+				"uid"
+			],
+			[
+				"cont",
+				"context_io"
+			],
+			[
+				"question",
+				"question_id"
+			],
+			[
+				"d",
+				"django"
+			],
+			[
+				"q",
+				"question_id"
+			],
+			[
+				"que",
+				"question"
+			],
+			[
+				"H",
+				"HttpResponse"
+			],
+			[
+				"Cho",
+				"ChoiceInline"
+			],
+			[
+				"M",
+				"model"
+			],
+			[
+				"qu",
+				"question_text"
+			],
+			[
+				"sum",
+				"sum_l"
+			],
+			[
+				"th",
+				"th"
+			],
+			[
+				"la",
+				"last_pos"
+			],
+			[
+				"t",
+				"t"
+			],
+			[
+				"sli",
+				"slides"
+			],
+			[
+				"in",
+				"insert"
+			],
+			[
+				"tra",
+				"train_labels"
+			],
+			[
+				"tr",
+				"train_labels"
+			],
+			[
+				"res_",
+				"res_knn"
+			],
+			[
+				"flo",
+				"flow_num"
+			],
+			[
+				"knn",
+				"knn"
+			],
+			[
+				"c",
+				"classifier_nn"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"ta",
+				"train_labels"
+			],
+			[
+				"l",
+				"l"
+			],
+			[
+				"to",
+				"total"
+			],
+			[
+				"k",
+				"k"
+			],
+			[
+				"id",
+				"id3_k"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"ma",
+				"maxThreshold"
+			],
+			[
+				"pi",
+				"points"
+			],
+			[
+				"da",
+				"data_list"
+			],
+			[
+				"clas",
+				"classes"
+			],
+			[
+				"new",
+				"newNames"
+			],
+			[
+				"ne",
+				"newData"
+			],
+			[
+				"int",
+				"int"
+			],
+			[
+				"dat",
+				"datapoints"
+			],
+			[
+				"pri",
+				"printTree"
+			],
+			[
+				"fea",
+				"featureNames"
+			],
+			[
+				"bes",
+				"bestFeature"
+			],
+			[
+				"f_",
+				"f_mean"
+			],
+			[
+				"di",
+				"diff_sys_dia"
+			],
+			[
+				"ra",
+				"radiu"
+			],
+			[
+				"dis",
+				"dis_list"
+			],
+			[
+				"var",
+				"var"
+			],
+			[
+				"mean",
+				"mean"
+			],
+			[
+				"free",
+				"free_block"
+			],
+			[
+				"all",
+				"allocated"
+			],
+			[
+				"oi",
+				"oi_size"
+			],
+			[
+				"pat",
+				"pat_list"
+			],
+			[
+				"pa",
+				"patient_list"
+			],
+			[
+				"print",
+				"print_data"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "test.txt",
+			"settings":
+			{
+				"buffer_size": 971,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "classify.py",
+			"settings":
+			{
+				"buffer_size": 3514,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data5.9/leg/1_wrong.txt",
+			"settings":
+			{
+				"buffer_size": 10104,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data5.9/back/3_wrong.txt",
+			"settings":
+			{
+				"buffer_size": 10122,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "parse_data.py",
+			"settings":
+			{
+				"buffer_size": 3521,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "classify1.py",
+			"settings":
+			{
+				"buffer_size": 1195,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scikit_classify.py",
+			"settings":
+			{
+				"buffer_size": 1508,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "knn.py",
+			"settings":
+			{
+				"buffer_size": 983,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data5.9/leg3-1.txt",
+			"settings":
+			{
+				"buffer_size": 27365,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data5.9/arm/3_wrong.txt",
+			"settings":
+			{
+				"buffer_size": 15169,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/relief/Dropbox/cs239/data5.9/back/1_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/back/1_good.txt",
+		"/home/relief/Dropbox/cs239/feature.py",
+		"/home/relief/Dropbox/cs239/data5.9/arm/2_wrong.txt",
+		"/home/relief/Dropbox/cs239/training_data.txt",
+		"/home/relief/Dropbox/cs239/old_classify.py",
+		"/home/relief/Dropbox/cs239/scikit_classify_onthefly.py",
+		"/home/relief/Dropbox/cs239/scikit_classify.py",
+		"/home/relief/Dropbox/cs239/knn.py",
+		"/home/relief/Dropbox/cs239/data/left/2_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/arm/1_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/arm/3_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/back/2_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/back/3_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/1_good.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/1_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/2_good.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/2_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/3_good.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/3_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/4_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/5_wrong.txt",
+		"/home/relief/Dropbox/cs239/data5.9/leg/6_wrong.txt",
+		"/home/relief/Dropbox/cs239/data/back/1_wrong.txt",
+		"/home/relief/Dropbox/cs239/data/back/4_correct.txt",
+		"/home/relief/Dropbox/cs239/data/back/1_correct.txt",
+		"/home/relief/Dropbox/cs239/data5.2/correct1.1.txt",
+		"/home/relief/Dropbox/cs239/data5.2/correct1.2.txt",
+		"/home/relief/Dropbox/cs239/data5.2/correct2.1.txt",
+		"/home/relief/Dropbox/cs239/data5.2/correct2.2.txt",
+		"/home/relief/Dropbox/cs239/data5.2/correct3.1.txt",
+		"/home/relief/Dropbox/cs239/data5.2/correct3.2.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong1.1.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong1.2.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong1.3.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong1.4.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong2.1.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong2.2.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong2.3.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong2.4.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong3.1.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong3.2.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong3.3.txt",
+		"/home/relief/Dropbox/cs239/clean_data/3_bad.txt",
+		"/home/relief/Dropbox/cs239/classify1.py",
+		"/home/relief/Dropbox/cs239/parse_data.py",
+		"/home/relief/Dropbox/cs239/test.txt",
+		"/home/relief/Dropbox/cs239/data5.2/wrong3.4.txt",
+		"/home/relief/Dropbox/cs239/test.py",
+		"/home/relief/Dropbox/cs239/clean_data/2_good.txt",
+		"/home/relief/Dropbox/cs239/training_label.txt",
+		"/home/relief/Dropbox/cs239/training_test.txt",
+		"/home/relief/Dropbox/cs239/training.txt",
+		"/home/relief/Dropbox/cs239/result.txt",
+		"/usr/lib/python2.7/dist-packages/xdiagnose/utils/math.py",
+		"/home/relief/Dropbox/cs239/nn.py",
+		"/home/relief/Dropbox/cs239/f",
+		"/d/replay/brain.py",
+		"/home/relief/Dropbox/CS249/hw/1_B.R",
+		"/home/relief/Dropbox/ac6d8e2916e27f37d2cd7ba7f583e6c1.R",
+		"/home/relief/Dropbox/CS249/hw/2_A.R",
+		"/home/relief/Dropbox/CS249/hw/hw2/HW02_ProblemA.nbformat3.ipynb",
+		"/home/relief/Dropbox/CS249/hw/hw2/Hw0B_answers.ipy",
+		"/d/replay/oldcode/ImageComp1.py",
+		"/d/replay/oldcode/img2cv2.py",
+		"/d/replay/oldcode/img.py",
+		"/d/replay/oldcode/ImageCompTest.py",
+		"/d/replay/dapai.py",
+		"/d/replay/.gitignore",
+		"/d/replay/shiftpy.sh",
+		"/d/replay/test.py",
+		"/d/replay/oldcode/owncard.py",
+		"/d/replay/img.py",
+		"/d/replay/data/screencap",
+		"/d/replay/data/raw.txt",
+		"/d/replay/img2cv2.py",
+		"/d/replay/fanhuidating.py",
+		"/d/replay/g",
+		"/home/relief/Dropbox/cs239/c.py",
+		"/home/relief/Dropbox/cs239/clean_data/3_good.txt",
+		"/d/replay/ImageComp1.py",
+		"/d/replay/screen.py",
+		"/d/replay/p",
+		"/d/replay/ImageComp.py",
+		"/d/replay/play.py",
+		"/d/replay/env.py",
+		"/d/replay/r",
+		"/home/relief/Dropbox/CS249/hw/0_B.ipy",
+		"/home/relief/Dropbox/CS249/hw/2",
+		"/home/relief/Dropbox/CS249/hw/Hw0B_answers.ipy",
+		"/home/relief/.bashrc",
+		"/home/relief/Dropbox/CS249/hw/1",
+		"/home/relief/Dropbox/cs239/clean/3_bad.txt",
+		"/home/relief/Dropbox/cs239/clean/3_good.txt",
+		"/home/relief/Dropbox/cs239/clean/2_good.txt",
+		"/home/relief/Dropbox/cs239/clean/2_bad.txt",
+		"/home/relief/Dropbox/cs239/clean/1_good.txt",
+		"/home/relief/Dropbox/cs239/clean/1_bad.txt",
+		"/home/relief/Dropbox/cs239/yanbin_good.txt",
+		"/home/relief/Dropbox/replay/p",
+		"/home/relief/Dropbox/replay/img.py",
+		"/home/relief/Dropbox/replay/s",
+		"/home/relief/Dropbox/replay/test.py",
+		"/home/relief/Dropbox/replay/ImageComp.py",
+		"/home/relief/Dropbox/replay/data/screen",
+		"/home/relief/ImageComp.py",
+		"/home/relief/Dropbox/replay/ImageCompTest.py",
+		"/home/relief/Dropbox/replay/identifycard.py",
+		"/home/relief/Dropbox/replay/t",
+		"/home/relief/Dropbox/replay/1.txt",
+		"/home/relief/Dropbox/replay/evt.txt",
+		"/home/relief/Dropbox/replay/evt.txtevent.txt",
+		"/home/relief/Dropbox/replay/raw.txt",
+		"/home/relief/Dropbox/replay/data/evt.txt",
+		"/home/relief/Dropbox/replay/m",
+		"/home/relief/Dropbox/replay/r",
+		"/home/relief/Dropbox/replay/g",
+		"/home/relief/Dropbox/replay/data/genzhu",
+		"/home/relief/Dropbox/replay/data/qipai",
+		"/d/sae/wys/1/App/Lib/Action/TaobaoAction.class.php",
+		"/home/relief/Dropbox/cs201/Javascript",
+		"/d/reran/3.txt",
+		"/home/relief/Dropbox/replay/trans.sh",
+		"/d/reran/1.txt",
+		"/home/relief/Dropbox/log/20150414.txt",
+		"/home/relief/Downloads/RTL8188C_8192C_USB_linux_v4.0.2_9000.20130911/driver/rtl8188C_8192C_usb_linux_v4.0.2_9000.20130911/Makefile",
+		"/d/reran/2.txt",
+		"/home/relief/Dropbox/replay/2.txt"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"1",
+			"equal_images",
+			"rank_img",
+			"hearts",
+			"clubs",
+			"diamonds",
+			"card1",
+			"Image",
+			"assuit",
+			"rankpy",
+			"Num",
+			"num",
+			"Num",
+			"type",
+			"Type",
+			"type",
+			"Type",
+			"save",
+			"csv",
+			"math",
+			"skeleton",
+			"elbow",
+			"print",
+			"adb",
+			"m < 1000",
+			"RGBA",
+			"np",
+			"plt",
+			"original",
+			" 33316",
+			"delete.json",
+			"accounts=",
+			"accounts-",
+			"get_digest_list",
+			"insert_email",
+			"insrteafeasd",
+			"gen_digest",
+			"small",
+			"optionsRadios",
+			"btn",
+			"table",
+			" Logo",
+			"-logo",
+			"http://famouslogos.net/",
+			"Best Buy Logo",
+			"form",
+			"Download",
+			"ationalization",
+			"\"",
+			"print",
+			"label_num",
+			"n_time",
+			"attack_duration",
+			".txt",
+			"txt/",
+			"pdf",
+			"lecture_",
+			"\\n",
+			"task_download",
+			"Download",
+			"()\n",
+			"(.)*..:.. ",
+			"flow_num",
+			"192.*",
+			"self.",
+			"self,",
+			"training",
+			"I ",
+			"classes",
+			"labels",
+			"MD5",
+			"md",
+			"waitpid",
+			"1",
+			"1 -",
+			"pms",
+			"md",
+			"register_files",
+			"port",
+			"osp2p_vsnscanf",
+			"val",
+			"va_start",
+			"osp2p_snscanf",
+			"read_to_taskbuf",
+			"task_upload",
+			"start_download",
+			"argprocess",
+			"131",
+			"ip",
+			"data",
+			"tp, fp, tn, fn",
+			"tp, fp, fn, tn",
+			"print",
+			" 00:00:00",
+			" 01:00:00",
+			" 00:00:00",
+			"classify",
+			"printT",
+			"classify",
+			"make_tree",
+			"calc_info_gain",
+			"calc_entropy",
+			"adjustFeature",
+			"mean",
+			"train_class",
+			"train_data",
+			"getFeature",
+			"w",
+			"getFeature",
+			"train_data",
+			"classify",
+			"ggain",
+			"self.",
+			"self,",
+			"var",
+			"numP",
+			"calc_sys_dia_var",
+			"num_of_peak",
+			"calc_sys_dia_var",
+			"')\n",
+			"output",
+			"calc_sys_dia_var",
+			"link",
+			"create_blank_direntry",
+			" 01:00:00",
+			" 00:00:00",
+			" 01:00:00",
+			" 00:00:00"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"desk_rank",
+			"club",
+			"diamond",
+			"card2",
+			"astype",
+			"numpy",
+			"Rank",
+			"rank",
+			"Rank",
+			"suit",
+			"Suit",
+			"suit",
+			"Suit",
+			"trail",
+			"hand",
+			"m < 2000 ",
+			"hearts",
+			"clubs",
+			"diamonds",
+			"33316",
+			"https://console.context.io/account/delete.json",
+			"delete.json?account=",
+			"accounts=",
+			"frequency",
+			"",
+			"-logo.jpg",
+			"http://famouslogos.net/images/",
+			"http://famouslogos.net/images",
+			"'",
+			"",
+			"'",
+			"",
+			"txt",
+			"txt/",
+			" ",
+			"",
+			".team4.uclaclass.isi.deterlab.net",
+			"",
+			"labels",
+			"self.data",
+			"tp, fp, fn, tn",
+			"tp, fp, tn, fn",
+			"",
+			"self.mean",
+			"self.train_class",
+			"self.train_data",
+			"self.getFeature",
+			"self.w",
+			"self.getFeature",
+			"self.train_data",
+			"",
+			"f2",
+			"f1",
+			"f.f2",
+			"f.f1",
+			"",
+			"data_list",
+			",",
+			"BotM",
+			"Bot1",
+			"",
+			"-",
+			"[",
+			"num_wait_pid",
+			"team4",
+			"bot2",
+			"master",
+			"client",
+			"train_",
+			"modified_mnist",
+			"//printf",
+			"modify_mnist",
+			"//printf",
+			"",
+			"evaluateOnce",
+			"last_push_type",
+			"   ",
+			"         ",
+			" ",
+			"",
+			":",
+			"\"",
+			"'",
+			"",
+			"tcp_packet",
+			"serverFork",
+			"client"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "test.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 971,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								971,
+								971
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "classify.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3514,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "data5.9/leg/1_wrong.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10104,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10104,
+								10104
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3493.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "data5.9/back/3_wrong.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3011,
+								3011
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 682.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "parse_data.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3521,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "classify1.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1195,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								539,
+								539
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 17.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "scikit_classify.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1508,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								333,
+								333
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 528.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "knn.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 983,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								835,
+								835
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 413.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "data5.9/leg3-1.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27365,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14150,
+								14150
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 5253.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "data5.9/arm/3_wrong.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2996,
+								2996
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 682.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "239.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
