@@ -6,19 +6,18 @@
 
 namespace Microsoft.Samples.Kinect.SkeletonBasics
 {
+    using System.Globalization;
     using System.IO;
     using System.Windows;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
     using Microsoft.Kinect;
     using System.Diagnostics;
     using System;
     using IronPython.Hosting;
     using Microsoft.Scripting.Hosting;
     using Microsoft.Scripting;
-
-
-
-
+    using SpeechLib;
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -78,7 +77,19 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
         /// Active Kinect sensor
         /// </summary>
         private KinectSensor sensor;
-        private static double count = 0;
+
+        /// <summary>
+        /// Bitmap that will hold color information
+        /// </summary>
+        private WriteableBitmap colorBitmap;
+
+        /// <summary>
+        /// Intermediate storage for the color data received from the camera
+        /// </summary>
+        private byte[] colorPixels;
+
+        private static double[] count = { 0 };
+        private static bool voice = false;
   
 
         /// <summary>
@@ -139,6 +150,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             }
         }
 
+        
         /// <summary>
         /// Execute startup tasks
         /// </summary>
@@ -154,7 +166,8 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
 
             // Display the drawing using our image control
             Image.Source = this.imageSource;
-
+            SpVoice Voice = new SpVoice();
+            Voice.Speak("Hello! Welcome to Kinect with Ergonomics!");
             // Look through all sensors and start the first connected one.
             // This requires that a Kinect is connected at the time of app startup.
             // To make your app robust against plug/unplug, 
@@ -171,12 +184,27 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
 
             if (null != this.sensor)
             {
+                // Turn on the color stream to receive color frames
+                this.sensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
+
+                // Allocate space to put the pixels we'll receive
+                this.colorPixels = new byte[this.sensor.ColorStream.FramePixelDataLength];
+
+                // This is the bitmap we'll display on-screen
+                this.colorBitmap = new WriteableBitmap(this.sensor.ColorStream.FrameWidth, this.sensor.ColorStream.FrameHeight, 96.0, 96.0, PixelFormats.Bgr32, null);
+
+                // Set the image we display to point to the bitmap where we'll put the image data
+                this.Image2.Source = this.colorBitmap;
+
+                // Add an event handler to be called whenever there is new color frame data
+                this.sensor.ColorFrameReady += this.SensorColorFrameReady;
+
                 // Turn on the skeleton stream to receive skeleton frames
                 this.sensor.SkeletonStream.Enable();
 
                 // Add an event handler to be called whenever there is new color frame data
                 this.sensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
-
+                
                 // Start the sensor!
                 try
                 {
@@ -206,7 +234,29 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                 this.sensor.Stop();
             }
         }
+        /// <summary>
+        /// Event handler for Kinect sensor's ColorFrameReady event
+        /// </summary>
+        /// <param name="sender">object sending the event</param>
+        /// <param name="e">event arguments</param>
+        private void SensorColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
+        {
+            using (ColorImageFrame colorFrame = e.OpenColorImageFrame())
+            {
+                if (colorFrame != null)
+                {
+                    // Copy the pixel data from the image to a temporary array
+                    colorFrame.CopyPixelDataTo(this.colorPixels);
 
+                    // Write the pixel data into our bitmap
+                    this.colorBitmap.WritePixels(
+                        new Int32Rect(0, 0, this.colorBitmap.PixelWidth, this.colorBitmap.PixelHeight),
+                        this.colorPixels,
+                        this.colorBitmap.PixelWidth * sizeof(int),
+                        0);
+                }
+            }
+        }
         /// <summary>
         /// Event handler for Kinect sensor's SkeletonFrameReady event
         /// </summary>
@@ -228,7 +278,9 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             using (DrawingContext dc = this.drawingGroup.Open())
             {
                 // Draw a transparent background to set the render size
-                dc.DrawRectangle(Brushes.Black, null, new Rect(0.0, 0.0, RenderWidth, RenderHeight));
+                //ImageSourceConverter c = new ImageSourceConverter();
+                //ImageSource x = (ImageSource)c.ConvertFrom(colorBitmap);
+                dc.DrawRectangle(Brushes.Transparent, null, new Rect(0.0, 0.0, RenderWidth, RenderHeight));
 
                 if (skeletons.Length != 0)
                 {
@@ -274,20 +326,22 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                 }
             }
         }*/
-        private static void doPython()
+        private void RecordPosition1(Skeleton skeleton, double[] count)
         {
-            ScriptEngine engine = Python.CreateEngine();
-            engine.ExecuteFile(@"C:\Users\user\Desktop\cs239\c.py");
-        }
-        private void RecordPosition (Skeleton skeleton, double count){
-            if (count % 10 != 0) {
-                count++; return;
+            if (count[0] % 10 != 0)
+            {
+                count[0]++; return;
             }
-            string text="";
-            string fn = @"C:\Users\user\Desktop\kinect.txt";
+            else
+            {
+                count[0] = 0;
+                count[0]++;
+            }
+            string text = "";
+            string fn = @"D:\kinect.txt";
             //HEAD
-            text = "Head: " + " X: " + skeleton.Joints[JointType.Head].Position.X + " ,Y: " + skeleton.Joints[JointType.Head].Position.Y + " ,Z: " + skeleton.Joints[JointType.Head].Position.Z+"\n";
-            File.AppendAllText(fn,text);
+            text = "Head: " + " X: " + skeleton.Joints[JointType.Head].Position.X + " ,Y: " + skeleton.Joints[JointType.Head].Position.Y + " ,Z: " + skeleton.Joints[JointType.Head].Position.Z + "\n";
+            File.AppendAllText(fn, text);
             //SHOULDER CENTER
             text = "Shoulder Center: " + " X: " + skeleton.Joints[JointType.ShoulderCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderCenter].Position.Z + "\n";
             File.AppendAllText(fn, text);
@@ -304,30 +358,225 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             text = "Hip Center: " + " X: " + skeleton.Joints[JointType.HipCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.HipCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipCenter].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //HIP LEFT
-			text = "Hip Left: " + " X: " + skeleton.Joints[JointType.HipLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HipLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipLeft].Position.Z + "\n";
+            text = "Hip Left: " + " X: " + skeleton.Joints[JointType.HipLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HipLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipLeft].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //HIP RIGHT
-			text = "Hip Right: " + " X: " + skeleton.Joints[JointType.HipRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HipRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipRight].Position.Z + "\n";
+            text = "Hip Right: " + " X: " + skeleton.Joints[JointType.HipRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HipRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipRight].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //ELBOW LEFT
-			text = "Elbow Left: " + " X: " + skeleton.Joints[JointType.ElbowLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowLeft].Position.Z + "\n";
+            text = "Elbow Left: " + " X: " + skeleton.Joints[JointType.ElbowLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowLeft].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //WRIST LEFT
-			text = "Wrist Left: " + " X: " + skeleton.Joints[JointType.WristLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.WristLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristLeft].Position.Z + "\n";
+            text = "Wrist Left: " + " X: " + skeleton.Joints[JointType.WristLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.WristLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristLeft].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //HAND LEFT
-			text = "Hand Left: " + " X: " + skeleton.Joints[JointType.HandLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HandLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandLeft].Position.Z + "\n";
+            text = "Hand Left: " + " X: " + skeleton.Joints[JointType.HandLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HandLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandLeft].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //ELBOW RIGHT
-			text = "Elbow Right: " + " X: " + skeleton.Joints[JointType.ElbowRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowRight].Position.Z + "\n";
+            text = "Elbow Right: " + " X: " + skeleton.Joints[JointType.ElbowRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowRight].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //WRIST RIGHT
-			text = "Wrist Right: " + " X: " + skeleton.Joints[JointType.WristRight].Position.X + " ,Y: " + skeleton.Joints[JointType.WristRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristRight].Position.Z + "\n";
+            text = "Wrist Right: " + " X: " + skeleton.Joints[JointType.WristRight].Position.X + " ,Y: " + skeleton.Joints[JointType.WristRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristRight].Position.Z + "\n";
             File.AppendAllText(fn, text);
             //HAND RIGHT
-			text = "Hand Right: " + " X: " + skeleton.Joints[JointType.HandRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HandRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandRight].Position.Z + "\n";
+            text = "Hand Right: " + " X: " + skeleton.Joints[JointType.HandRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HandRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            text = "Knee Left: " + " X: " + skeleton.Joints[JointType.KneeLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.KneeLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.KneeLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            text = "Ankle Left: " + " X: " + skeleton.Joints[JointType.AnkleLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.AnkleLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.AnkleLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            text = "Knee Right: " + " X: " + skeleton.Joints[JointType.KneeRight].Position.X + " ,Y: " + skeleton.Joints[JointType.KneeRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.KneeRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            text = "Ankle Right: " + " X: " + skeleton.Joints[JointType.AnkleRight].Position.X + " ,Y: " + skeleton.Joints[JointType.AnkleRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.AnkleRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
             File.AppendAllText(fn, text);
             File.AppendAllText(fn, "--------------------------------------\n");
+
+        }
+
+        private void RecordPosition0(Skeleton skeleton, double[] count)
+        {
+            /*if (count[0] % 90 != 0)
+            {
+                count[0]++; return;
+            }
+            else
+            {
+                count[0] = 0;
+                count[0]++;
+            }*/
+            string fn = @"data.txt";
+            //File.WriteAllText(fn, String.Empty);
+            //StreamWriter sw = new StreamWriter(fn);
+            //JointType[] recordAll = {JointType.Head, JointType.ShoulderCenter, JointType.ShoulderLeft, JointType.ShoulderRight, JointType.Spine, JointType.HipCenter, JointType.HipLeft, JointType.HipRight, JointType.ElbowLeft, JointType.WristLeft, JointType.HandLeft, JointType.ElbowRight, JointType.WristRight, JointType.HandRight}; 
+            string text = "------------------------\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //HEAD
+            text = "Head: " + " X: " + skeleton.Joints[JointType.Head].Position.X + " ,Y: " + skeleton.Joints[JointType.Head].Position.Y + " ,Z: " + skeleton.Joints[JointType.Head].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //SHOULDER CENTER
+            text = "Shoulder Center: " + " X: " + skeleton.Joints[JointType.ShoulderCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderCenter].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //SHOULDER LEFT
+            text = "Shoulder Left: " + " X: " + skeleton.Joints[JointType.ShoulderLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //SHOULDER RIGHT
+            text = "Shoulder Right: " + " X: " + skeleton.Joints[JointType.ShoulderRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //SPINE
+            text = "Spine: " + " X: " + skeleton.Joints[JointType.Spine].Position.X + " ,Y: " + skeleton.Joints[JointType.Spine].Position.Y + " ,Z: " + skeleton.Joints[JointType.Spine].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //HIP CENTER
+            text = "Hip Center: " + " X: " + skeleton.Joints[JointType.HipCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.HipCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipCenter].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //HIP LEFT
+            text = "Hip Left: " + " X: " + skeleton.Joints[JointType.HipLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HipLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //HIP RIGHT
+            text = "Hip Right: " + " X: " + skeleton.Joints[JointType.HipRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HipRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //ELBOW LEFT
+            text = "Elbow Left: " + " X: " + skeleton.Joints[JointType.ElbowLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //WRIST LEFT
+            text = "Wrist Left: " + " X: " + skeleton.Joints[JointType.WristLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.WristLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //HAND LEFT
+            text = "Hand Left: " + " X: " + skeleton.Joints[JointType.HandLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HandLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandLeft].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //ELBOW RIGHT
+            text = "Elbow Right: " + " X: " + skeleton.Joints[JointType.ElbowRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //WRIST RIGHT
+            text = "Wrist Right: " + " X: " + skeleton.Joints[JointType.WristRight].Position.X + " ,Y: " + skeleton.Joints[JointType.WristRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //HAND RIGHT
+            text = "Hand Right: " + " X: " + skeleton.Joints[JointType.HandRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HandRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandRight].Position.Z + "\n";
+            File.AppendAllText(fn, text);
+            text = "Knee Left: " + " X: " + skeleton.Joints[JointType.KneeLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.KneeLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.KneeLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            text = "Ankle Left: " + " X: " + skeleton.Joints[JointType.AnkleLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.AnkleLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.AnkleLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            text = "Knee Right: " + " X: " + skeleton.Joints[JointType.KneeRight].Position.X + " ,Y: " + skeleton.Joints[JointType.KneeRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.KneeRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            text = "Ankle Right: " + " X: " + skeleton.Joints[JointType.AnkleRight].Position.X + " ,Y: " + skeleton.Joints[JointType.AnkleRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.AnkleRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            File.AppendAllText(fn, text);
+            //sw.Write(text);
+            //sw.Close();
+            File.AppendAllText(fn, "--------------------------------------\n");
+            //run_test();
+
+
+        }
+        private void RecordPosition (Skeleton skeleton, double[] count){
+            if (count[0] % 90 != 0)
+            {
+                count[0]++; return;
+            }
+            else {
+                count[0] = 0;
+                count[0]++;
+            }
+            string fn = @"test.txt";
+            //File.WriteAllText(fn, String.Empty);
+            StreamWriter sw = new StreamWriter(fn);
+            //JointType[] recordAll = {JointType.Head, JointType.ShoulderCenter, JointType.ShoulderLeft, JointType.ShoulderRight, JointType.Spine, JointType.HipCenter, JointType.HipLeft, JointType.HipRight, JointType.ElbowLeft, JointType.WristLeft, JointType.HandLeft, JointType.ElbowRight, JointType.WristRight, JointType.HandRight}; 
+            string text="------------------------\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //HEAD
+            text = "Head: " + " X: " + skeleton.Joints[JointType.Head].Position.X + " ,Y: " + skeleton.Joints[JointType.Head].Position.Y + " ,Z: " + skeleton.Joints[JointType.Head].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //SHOULDER CENTER
+            text = "Shoulder Center: " + " X: " + skeleton.Joints[JointType.ShoulderCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderCenter].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //SHOULDER LEFT
+            text = "Shoulder Left: " + " X: " + skeleton.Joints[JointType.ShoulderLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //SHOULDER RIGHT
+            text = "Shoulder Right: " + " X: " + skeleton.Joints[JointType.ShoulderRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ShoulderRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ShoulderRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //SPINE
+            text = "Spine: " + " X: " + skeleton.Joints[JointType.Spine].Position.X + " ,Y: " + skeleton.Joints[JointType.Spine].Position.Y + " ,Z: " + skeleton.Joints[JointType.Spine].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //HIP CENTER
+            text = "Hip Center: " + " X: " + skeleton.Joints[JointType.HipCenter].Position.X + " ,Y: " + skeleton.Joints[JointType.HipCenter].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipCenter].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //HIP LEFT
+			text = "Hip Left: " + " X: " + skeleton.Joints[JointType.HipLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HipLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //HIP RIGHT
+			text = "Hip Right: " + " X: " + skeleton.Joints[JointType.HipRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HipRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HipRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //ELBOW LEFT
+			text = "Elbow Left: " + " X: " + skeleton.Joints[JointType.ElbowLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //WRIST LEFT
+			text = "Wrist Left: " + " X: " + skeleton.Joints[JointType.WristLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.WristLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //HAND LEFT
+			text = "Hand Left: " + " X: " + skeleton.Joints[JointType.HandLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.HandLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //ELBOW RIGHT
+			text = "Elbow Right: " + " X: " + skeleton.Joints[JointType.ElbowRight].Position.X + " ,Y: " + skeleton.Joints[JointType.ElbowRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.ElbowRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            //WRIST RIGHT
+			text = "Wrist Right: " + " X: " + skeleton.Joints[JointType.WristRight].Position.X + " ,Y: " + skeleton.Joints[JointType.WristRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.WristRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text); 
+            //HAND RIGHT
+			text = "Hand Right: " + " X: " + skeleton.Joints[JointType.HandRight].Position.X + " ,Y: " + skeleton.Joints[JointType.HandRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.HandRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            text = "Knee Left: " + " X: " + skeleton.Joints[JointType.KneeLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.KneeLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.KneeLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            text = "Ankle Left: " + " X: " + skeleton.Joints[JointType.AnkleLeft].Position.X + " ,Y: " + skeleton.Joints[JointType.AnkleLeft].Position.Y + " ,Z: " + skeleton.Joints[JointType.AnkleLeft].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            text = "Knee Right: " + " X: " + skeleton.Joints[JointType.KneeRight].Position.X + " ,Y: " + skeleton.Joints[JointType.KneeRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.KneeRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            text = "Ankle Right: " + " X: " + skeleton.Joints[JointType.AnkleRight].Position.X + " ,Y: " + skeleton.Joints[JointType.AnkleRight].Position.Y + " ,Z: " + skeleton.Joints[JointType.AnkleRight].Position.Z + "\n";
+            //File.AppendAllText(fn, text);
+            sw.Write(text);
+            sw.Close();
+            //File.AppendAllText(fn, "--------------------------------------\n");
+            run_test();
+
 
         }
         /// <summary>
@@ -338,7 +587,7 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
         private void DrawBonesAndJoints(Skeleton skeleton, DrawingContext drawingContext)
         {
             // Render Torso
-            //RecordPosition(skeleton,count);
+            
             this.DrawBone(skeleton, drawingContext, JointType.Head, JointType.ShoulderCenter);
             this.DrawBone(skeleton, drawingContext, JointType.ShoulderCenter, JointType.ShoulderLeft);
             this.DrawBone(skeleton, drawingContext, JointType.ShoulderCenter, JointType.ShoulderRight);
@@ -386,6 +635,8 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
                     drawingContext.DrawEllipse(drawBrush, null, this.SkeletonPointToScreen(joint.Position), JointThickness, JointThickness);
                 }
             }
+            RecordPosition1(skeleton, count);
+            //System.Diagnostics.Process.Start(@"speak.vbs");
         }
 
         /// <summary>
@@ -447,18 +698,85 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             {
                 if (this.checkBoxSeatedMode.IsChecked.GetValueOrDefault())
                 {
-                    this.sensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;
+                    voice = true;
                 }
                 else
                 {
-                    this.sensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
+                    voice = false;
                 }
             }
         }
-
+        private static void doPython()
+        {
+            ScriptEngine engine = Python.CreateEngine();
+            engine.ExecuteFile(@"classify.py");
+            //engine.Runtime.IO.RedirectToConsole();
+            //System.IO.TextWriter writeFile = new StreamWriter("D:\\tmp.txt");
+            //Console.SetOut(writeFile);
+            //writeFile.Flush();
+            //writeFile.Close();
+            //ScriptRuntime pyruntime = Python.CreateRuntime();
+            //dynamic obj = pyruntime.UseFile(@"C:\Users\user\Desktop\cs239\classify.py");
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             doPython();
+            textbox.Text += "\n";
+            StreamReader streamReader = new StreamReader(@"result.txt");
+            textbox.Text += streamReader.ReadToEnd();
+            //MessageBox.Show("good posture!\n");
+        }
+        private void run_test() {
+            /*
+            doPython();
+            textbox.Text += "\n";
+            StreamReader streamReader = new StreamReader(@"result.txt");
+            textbox.Text += streamReader.ReadToEnd();
+            streamReader.Close();
+            textbox.ScrollToEnd();
+            if (voice) {
+                //SpeechSynthesizer reader = new SpeechSynthesizer();
+            }
+            */
+            doPython();
+            textbox.Text += "\n ---------------------- \n";
+            StreamReader streamReader = new StreamReader(@"result.txt");
+            String tmp = streamReader.ReadToEnd();
+            streamReader.Close();
+            String speak_text="";
+            SpVoice Voice = new SpVoice();
+            int errno = Convert.ToInt32(tmp);
+            if (errno == 0)
+            {
+                if(voice) Voice.Speak("Perfect Posture!");
+                textbox.Text += "You have a perfect posture!\n";
+            }
+            else {
+                while (errno > 0) {
+                    if (errno >= 4)
+                    {
+                        if (voice) Voice.Speak("Hunching back!");
+                        textbox.Text += "You are hunching your back!\n";
+                        errno -= 4;
+                    }
+                    else if (errno >= 2)
+                    {
+                        if (voice) Voice.Speak("Arms too close!");
+                        textbox.Text += "You arms are too close to your body!\n";
+                        errno -= 2;
+                    }
+                    else if (errno >= 1)
+                    {
+                        if (voice) Voice.Speak("Crossing legs!");
+                        textbox.Text += "You are crossing your legs!\n";
+                        errno -= 1;
+                    }
+                    else break;
+                }
+
+            }
+            textbox.ScrollToEnd();
         }
     }
 }
+
